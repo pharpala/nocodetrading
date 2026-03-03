@@ -1,0 +1,22 @@
+# Run backend + frontend together. From repo root: docker compose up --build
+# Then open http://127.0.0.1:8080 (frontend calls backend at http://localhost:8000)
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - MARTIAN_API_KEY=${MARTIAN_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - backend

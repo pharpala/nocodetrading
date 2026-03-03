@@ -36,6 +36,12 @@ export interface BacktestResults {
   monte_carlo: { date: string; [key: string]: number | string }[];
   trades: Trade[];
   guardrails: string[];
+  metrics?: {
+    total_return: number;
+    sharpe: number;
+    max_drawdown: number;
+    num_trades: number;
+  };
 }
 
 export const BLOCK_COLORS: Record<string, string> = {

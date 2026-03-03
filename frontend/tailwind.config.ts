@@ -68,6 +68,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        /* ── Cosmic palette ── */
+        cosmic: {
+          cyan:    "#00e5ff",
+          blue:    "#2979ff",
+          violet:  "#7c3aed",
+          magenta: "#e91e8c",
+          plasma:  "#00ff88",
+          void:    "#06021a",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -88,20 +97,39 @@ export default {
           to: { transform: "translateX(0)" },
         },
         "fade-in-up": {
-          from: { opacity: "0", transform: "translateY(8px)" },
+          from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-soft": {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
+        "glow-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 14px rgba(0,229,255,0.30), 0 0 38px rgba(0,229,255,0.10)",
+          },
+          "50%": {
+            boxShadow: "0 0 26px rgba(0,229,255,0.58), 0 0 68px rgba(0,229,255,0.22)",
+          },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-5px)" },
+        },
+        "nebula-shift": {
+          "0%, 100%": { opacity: "0.85", filter: "hue-rotate(0deg)" },
+          "50%":       { opacity: "1",    filter: "hue-rotate(14deg)" },
+        },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-in-right": "slide-in-right 0.3s ease-out",
-        "fade-in-up": "fade-in-up 0.4s ease-out",
-        "pulse-soft": "pulse-soft 2s ease-in-out infinite",
+        "accordion-down":  "accordion-down 0.2s ease-out",
+        "accordion-up":    "accordion-up 0.2s ease-out",
+        "slide-in-right":  "slide-in-right 0.3s ease-out",
+        "fade-in-up":      "fade-in-up 0.4s ease-out",
+        "pulse-soft":      "pulse-soft 2s ease-in-out infinite",
+        "glow-pulse":      "glow-pulse 2.8s ease-in-out infinite",
+        "float":           "float 4s ease-in-out infinite",
+        "nebula-shift":    "nebula-shift 6s ease-in-out infinite",
       },
     },
   },

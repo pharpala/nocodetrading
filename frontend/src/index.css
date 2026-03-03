@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Deep Space Void ── */
+    --background: 258 70% 2%;
+    --foreground: 195 80% 96%;
+
+    --card: 258 60% 4%;
+    --card-foreground: 195 80% 96%;
+
+    --popover: 258 60% 5%;
+    --popover-foreground: 195 80% 96%;
+
+    /* Electric Cyan — primary CTA */
+    --primary: 185 100% 50%;
+    --primary-foreground: 258 80% 5%;
+
+    /* Deep Cosmic — secondary */
+    --secondary: 258 50% 11%;
+    --secondary-foreground: 220 30% 80%;
+
+    --muted: 258 50% 8%;
+    --muted-foreground: 220 20% 50%;
+
+    /* Violet Nebula — accent */
+    --accent: 278 80% 55%;
+    --accent-foreground: 195 80% 96%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Cyan-tinted border */
+    --border: 185 45% 20%;
+    --input: 258 50% 9%;
+    --ring: 185 100% 50%;
+
+    --radius: 0.875rem;
+
+    /* Vivid block colors */
+    --block-blue: 210 100% 58%;
+    --block-orange: 22 100% 60%;
+    --block-green: 152 100% 44%;
+    --block-red: 0 90% 60%;
+    --block-purple: 270 90% 64%;
+    --block-teal: 180 100% 44%;
+    --block-pink: 330 100% 64%;
+    --block-yellow: 48 100% 54%;
+    --block-indigo: 232 90% 70%;
+
+    --sidebar-background: 260 65% 3%;
+    --sidebar-foreground: 195 70% 90%;
+    --sidebar-primary: 185 100% 50%;
+    --sidebar-primary-foreground: 258 80% 5%;
+    --sidebar-accent: 258 50% 9%;
+    --sidebar-accent-foreground: 195 70% 90%;
+    --sidebar-border: 258 40% 15%;
+    --sidebar-ring: 185 100% 50%;
+  }
+
+  .dark {
+    --background: 258 70% 2%;
+    --foreground: 195 80% 96%;
+    --card: 258 60% 4%;
+    --card-foreground: 195 80% 96%;
+    --popover: 258 60% 5%;
+    --popover-foreground: 195 80% 96%;
+    --primary: 185 100% 50%;
+    --primary-foreground: 258 80% 5%;
+    --secondary: 258 50% 11%;
+    --secondary-foreground: 220 30% 80%;
+    --muted: 258 50% 8%;
+    --muted-foreground: 220 20% 50%;
+    --accent: 278 80% 55%;
+    --accent-foreground: 195 80% 96%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 185 45% 20%;
+    --input: 258 50% 9%;
+    --ring: 185 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #03010a;
+    background-image:
+      /* Faint cyan whisper — far upper left */
+      radial-gradient(ellipse 55% 35% at 2% 5%,  hsla(190, 100%, 52%, 0.06), transparent 100%),
+      /* Faint violet depth — upper right */
+      radial-gradient(ellipse 50% 40% at 98% 4%,  hsla(272, 90%, 40%, 0.07), transparent 100%),
+      /* Deep violet core — mid screen, very subtle */
+      radial-gradient(ellipse 80% 55% at 50% 45%, hsla(258, 80%, 12%, 0.55), transparent 100%),
+      /* Indigo lower-left depth */
+      radial-gradient(ellipse 60% 40% at 8% 95%,  hsla(235, 80%, 20%, 0.10), transparent 100%),
+      /* Magenta ghost — lower right corner */
+      radial-gradient(ellipse 45% 30% at 96% 98%, hsla(300, 80%, 30%, 0.07), transparent 100%);
+    background-attachment: fixed;
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+  }
+
+  /* Sparse distant starfield */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      /* Faint noise grid — barely visible */
+      linear-gradient(rgba(0, 229, 255, 0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 229, 255, 0.012) 1px, transparent 1px),
+      /* Distant stars — small, sparse, mostly white */
+      radial-gradient(1.4px 1.4px at 8%  12%,  rgba(255,255,255,0.55), transparent 60%),
+      radial-gradient(1.0px 1.0px at 21% 67%,  rgba(210,235,255,0.40), transparent 60%),
+      radial-gradient(1.6px 1.6px at 37% 29%,  rgba(255,255,255,0.50), transparent 60%),
+      radial-gradient(1.2px 1.2px at 54% 81%,  rgba(220,220,255,0.38), transparent 60%),
+      radial-gradient(1.5px 1.5px at 68% 44%,  rgba(255,255,255,0.48), transparent 60%),
+      radial-gradient(1.1px 1.1px at 79%  8%,  rgba(200,230,255,0.42), transparent 60%),
+      radial-gradient(1.3px 1.3px at 91% 73%,  rgba(255,255,255,0.45), transparent 60%),
+      radial-gradient(1.0px 1.0px at 14% 90%,  rgba(230,220,255,0.35), transparent 60%),
+      radial-gradient(1.2px 1.2px at 45% 52%,  rgba(255,255,255,0.38), transparent 60%),
+      radial-gradient(1.4px 1.4px at 83% 33%,  rgba(210,240,255,0.42), transparent 60%);
+    background-size:
+      80px 80px, 80px 80px,
+      auto, auto, auto, auto, auto, auto, auto, auto, auto, auto;
+    animation: star-drift-near 140s linear infinite;
+  }
+
+  /* Even dimmer secondary layer */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+    background-image:
+      radial-gradient(1.0px 1.0px at 5%  44%,  rgba(255,255,255,0.50), transparent 60%),
+      radial-gradient(1.0px 1.0px at 18% 22%,  rgba(200,225,255,0.45), transparent 60%),
+      radial-gradient(1.0px 1.0px at 31% 77%,  rgba(255,255,255,0.48), transparent 60%),
+      radial-gradient(1.0px 1.0px at 49%  6%,  rgba(230,220,255,0.42), transparent 60%),
+      radial-gradient(1.0px 1.0px at 62% 59%,  rgba(255,255,255,0.46), transparent 60%),
+      radial-gradient(1.0px 1.0px at 75% 88%,  rgba(210,230,255,0.40), transparent 60%),
+      radial-gradient(1.0px 1.0px at 88% 17%,  rgba(255,255,255,0.44), transparent 60%),
+      radial-gradient(1.0px 1.0px at 97% 50%,  rgba(220,215,255,0.38), transparent 60%);
+    animation: star-drift-far 200s linear infinite;
+  }
+
+  #root {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(6, 2, 22, 0.68);
+    backdrop-filter: blur(28px) saturate(1.5);
+    -webkit-backdrop-filter: blur(28px) saturate(1.5);
+    border: 1px solid rgba(0, 229, 255, 0.16);
+    box-shadow:
+      0 0 0 1px rgba(0, 229, 255, 0.06),
+      0 8px 60px rgba(0, 0, 0, 0.72),
+      0 2px 16px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(0, 229, 255, 0.10),
+      inset 0 0 50px rgba(0, 0, 50, 0.25);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(0, 229, 255, 0.24);
+    box-shadow:
+      0 0 0 1px rgba(0, 229, 255, 0.10),
+      0 8px 60px rgba(0, 0, 0, 0.72),
+      0 2px 16px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(0, 229, 255, 0.14),
+      inset 0 0 50px rgba(0, 0, 50, 0.25);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .cosmic-glow {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.38), 0 0 60px rgba(0, 229, 255, 0.14);
+  }
+
+  .neon-text {
+    color: hsl(185, 100%, 62%);
+    text-shadow: 0 0 10px hsla(185, 100%, 62%, 0.65), 0 0 28px hsla(185, 100%, 55%, 0.28);
+  }
+
+  .block-connector {
+    @apply w-0.5 h-6 mx-auto;
+    background: linear-gradient(180deg, rgba(0, 229, 255, 0.45), rgba(120, 60, 255, 0.45));
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.28);
+  }
+}
+
+@keyframes shoot {
+  /* meteor travels for ~2% of the total duration, invisible the rest */
+  0%     { transform: rotate(45deg) translateX(-220px); opacity: 0; }
+  0.5%   { opacity: 0.88; }
+  2.5%   { transform: rotate(45deg) translateX(1300px); opacity: 0; }
+  2.51%  { transform: rotate(45deg) translateX(-220px); opacity: 0; }
+  100%   { transform: rotate(45deg) translateX(-220px); opacity: 0; }
+}
+
+@keyframes aurora-shift {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1.2; }
+}
+
+@keyframes star-drift-near {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-12px, 9px, 0) scale(1.015); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes star-drift-far {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(10px, -7px, 0) scale(1.007); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1.0; }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to   { height: 0; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.30), 0 0 38px rgba(0, 229, 255, 0.10);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.55), 0 0 65px rgba(0, 229, 255, 0.22);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+
+@keyframes nebula-shift {
+  0%, 100% { opacity: 0.85; filter: hue-rotate(0deg); }
+  50%       { opacity: 1.0;  filter: hue-rotate(12deg); }
+}

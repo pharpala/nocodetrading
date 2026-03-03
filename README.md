@@ -1,73 +1,51 @@
-# Welcome to your Lovable project
+# No-code trading strategy sandbox
 
-## Project info
+## Run with Docker (easiest)
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+From the repo root:
 
-## How can I edit this code?
+```bash
+docker compose up --build
+```
 
-There are several ways of editing your application.
+Then open **http://127.0.0.1:8080** in your browser. The frontend talks to the backend at http://localhost:8000.
 
-**Use Lovable**
+- Optional: set `OPENAI_API_KEY` in the environment (or in a `.env` file) to use LLM parsing.
+- Stop with `Ctrl+C`; add `-d` to run in the background.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Run without Docker (two terminals)
 
-**Use your preferred IDE**
+### 1. Backend (port 8000)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+```bash
+cd backend
+python3 -m venv .venv   # if you don't have .venv yet
+.venv/bin/pip install -r requirements.txt
+.venv/bin/uvicorn app:app --reload --host 127.0.0.1 --port 8000
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Leave this terminal running.
 
-Follow these steps:
+### 2. Frontend (port 8080)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+In a **second terminal**:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+cd frontend
+npm install   # if you haven't already
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Then open **http://localhost:8080** (or http://127.0.0.1:8080) in your browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### One-command option (optional)
 
-**Use GitHub Codespaces**
+From the repo root:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npx concurrently -n backend,frontend -c blue,green "cd backend && .venv/bin/uvicorn app:app --reload --host 127.0.0.1 --port 8000" "cd frontend && npm run dev"
+```
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Stop with Ctrl+C.
